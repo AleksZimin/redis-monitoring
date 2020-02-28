@@ -1,0 +1,5 @@
+- targets:
+  - redis-exporter:9121
+  labels:
+    env: dev
+    job: redis-exporter

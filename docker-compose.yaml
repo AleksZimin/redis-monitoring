@@ -1,0 +1,70 @@
+version: '3.0'
+services:
+  redis:
+    image: redis:${REDIS_TAG}
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    command: ["redis-server", "--appendonly", "yes"]
+    networks:
+      - back
+
+  redis-exporter:
+    image: oliver006/redis_exporter:${REDIS_EXPORTER_TAG}
+    restart: unless-stopped
+    command: ["--redis.addr", "redis://redis:6379"]
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+    depends_on:
+      - "redis"
+    networks:
+      - back
+      - monitoring
+
+  prometheus:
+    image: prom/prometheus:${PROMETHEUS_TAG}
+    restart: unless-stopped
+    volumes:
+      - prometheus_data:/prometheus
+      - ./prometheus/:/etc/prometheus/:ro
+    command: 
+      - '--config.file=/etc/prometheus/prometheus.yaml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    depends_on:
+      - "redis-exporter"
+    networks:
+      - monitoring
+      - front
+
+  grafana:
+    image: grafana/grafana:${GRAFANA_TAG}
+    restart: unless-stopped
+    user: "472"
+    depends_on:
+      - prometheus
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/:ro
+    env_file:
+      - ./grafana/config.monitoring
+    networks:
+      - front
+    ports:
+      - 3000:3000
+
+
+
+networks:
+  back:
+  monitoring:
+  front:
+
+volumes:
+    redis_data: {}
+    prometheus_data: {}
+    grafana_data: {}
