@@ -38,7 +38,7 @@ http://<hostname>:3000/login
 - Дашборд для Redis можно открыть по ссылке
 
 ```bash
-http://35.228.87.105:3000/d/bzDsDSlWk/redis-dashboard-for-prometheus-redis-exporter-1-x?orgId=1&refresh=30s
+http://<hostname>:3000/d/bzDsDSlWk/redis-dashboard-for-prometheus-redis-exporter-1-x?orgId=1&refresh=30s
 ```
 
 ### TO DO
