@@ -35,11 +35,13 @@ http://<hostname>:3000/login
 - Ввести логин admin и пароль, который указан в параметре GF_SECURITY_ADMIN_PASSWORD в файле ./grafana/config.monitoring. Обратить внимание, что соединение не защищено! Вводить пароль только если используется доверенная сеть.
 
 
-- Дашборд для Redis можно открыть по ссылке
+- Дашборд для Redis можно найти тут:
 
 ```bash
-http://<hostname>:3000/d/bzDsDSlWk/redis-dashboard-for-prometheus-redis-exporter-1-x?orgId=1&refresh=30s
+http://<hostname>:3000/dashboards
 ```
+
+- Для появления данных необходимо подождать пару минут
 
 ### TO DO
 
