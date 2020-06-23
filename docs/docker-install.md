@@ -18,7 +18,7 @@ sudo apt-get install \
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 ```
 
-- Провил ключ (должен быть docker)
+- Проверил ключ (должен быть docker)
 
 ```bash
 sudo apt-key fingerprint 0EBFCD88
@@ -89,7 +89,6 @@ SHA_SUM=542e93b1d5106d2769b325f60ba9a0ba087bb96e30dc2c1cb026f0cb642e9aed
 
 ```bash
 curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VER}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
-
 ```
 
 - Проверил контрольную сумму
@@ -98,7 +97,7 @@ curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VER}/docke
 echo $SHA_SUM docker-compose | sha256sum -c -
 ```
 
-- Переместил бинарник в PATH дал ему права на выполнение и проверил версию
+- Переместил бинарник в PATH, дал ему права на выполнение и проверил версию
 
 ```bash
 sudo mv docker-compose /usr/local/bin/docker-compose

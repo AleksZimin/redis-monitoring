@@ -2,7 +2,7 @@
 
 ## Инструкция по ручному запуску. Все действия выполнялись на Ubuntu 18.04.4 LTS.
 
-### [Инструкция установке docker и docker-compose](docs/docker-install.md)
+### [Инструкция по установке docker и docker-compose](docs/docker-install.md)
 
 ### Запуск мониторинга в docker-compose. Данные Redis, Prometheus и Grafana сохраняются в docker volumes.
 
